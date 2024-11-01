@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% load custom_tag %}
+
+{% block title %}Список записей{% endblock title %}
+{% block content %}
+<h1 color='red'>403, нет доступа</h1>
+<a href='{% url "car_list" %}'><h1>Назад</h1></a>
+
+
+{% endblock content %}

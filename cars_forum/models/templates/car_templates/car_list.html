@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% load custom_tag %}
+
+{% block title %}Список записей{% endblock title %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<a align='right' href="{% url 'car_create' %}">Создать запись</a>
+{% endif %}
+<div class='list-car-note'>
+{% if cars %}
+{% for car in cars %}
+<a href='{% url "car_detail" pk=car.id %}'>
+	<div class='list-car-note__item'>
+		<h1>Автор:{{car.owner.username}}</h1>
+		<h2>Модель:{{car.model}}</h2>
+		<p>Описание:{{car.description|truncatewords:10}}</p>
+
+	</div>
+</a>
+{% endfor %}
+{% else %}
+<div>
+	<h1>Нет записей</h1>
+</div>
+
+{% endif %}
+
+</div>
+{% endblock content %}

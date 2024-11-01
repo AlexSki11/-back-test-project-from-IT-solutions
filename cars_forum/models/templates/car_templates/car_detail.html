@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+{% load custom_tag %}
+
+{% block title %}Список записей{% endblock title %}
+{% block content %}
+<a href='{% url "car_list" %}'> Назад</a>
+{% if car.owner == request.user %}
+<br />
+<a href='{% url "car_edit" pk=car.id %}'>Редактировать</a>
+<br />
+<a href='{% url "car_delete" pk=car.id %}'>Удалить</a>
+{% endif %}
+<div>
+    <p>Дата создания:{{car.created_at|date:'d.m.Y'}}</p>
+	<h1>Автор:{{car.owner.username}}</h1>
+    <h2>Марка:{{car.make}}</h2>
+	<h2>Модель:{{car.model}}</h2>
+	<p>Описание:{{car.description}}</p>
+    {% if car.created_at != car.updated_at %}
+    <p>Последнее изменение: {{car.updated_at|date:'H:i d:m:Y'}}</p> <!--https://docs.djangoproject.com/en/5.1/ref/templates/builtins/#date-->
+    {% endif %}
+</div>
+
+{% endblock content %}
