@@ -16,9 +16,33 @@
     <h2>Марка:{{car.make}}</h2>
 	<h2>Модель:{{car.model}}</h2>
 	<p>Описание:{{car.description}}</p>
-    {% if car.created_at != car.updated_at %}
-    <p>Последнее изменение: {{car.updated_at|date:'H:i d:m:Y'}}</p> <!--https://docs.djangoproject.com/en/5.1/ref/templates/builtins/#date-->
+    {% if car.updated_at %}
+    <p>Последнее изменение: {{car.updated_at|date:'H:i d.m.Y'}}</p> <!--https://docs.djangoproject.com/en/5.1/ref/templates/builtins/#date-->
     {% endif %}
+    <a href='{% url "comment_create" %}?id={{car.id}}'>добавить комментарий</a>
 </div>
 
+<div>
+    <h1>Комментарии</h1>
+{% if car.comment.all %}
+
+{% for comment in car.comment.all %}
+
+<div>
+    <h2>Пользователь:{{comment.author.username}} | Дата создания:{{comment.created_at|date:'d.m.Y H:i'}} </h2>
+    <p>{{comment.content}}</p>
+    {% if comment.author == request.user %}
+    <a href='{% url "comment_edit" pk=comment.id %}'>Редактировать</a>
+    <a href='{% url "comment_delete" pk=comment.id %}?id={{car.id}}'>Удалить</a>
+    {% endif %}
+</div>
+    
+
+{% endfor %}
+
+{% else %}
+<h2>Комментариев нет! Но вы можете быть первый кто оставит комментарий</h2>
+
+{% endif %}
+</div>
 {% endblock content %}

@@ -13,7 +13,7 @@ class Car(models.Model):
     description = models.TextField(max_length=1024, verbose_name='Описание автомобиля')
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания записи')
-    updated_at = models.DateTimeField(auto_now_add=True,verbose_name='Дата и время последнего обновления записи', blank=True)
+    updated_at = models.DateTimeField(verbose_name='Дата и время последнего обновления записи', blank=True, null=True)
     owner = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE, related_name='owner')
 
     def get_absolute_url(self):
@@ -27,5 +27,9 @@ class Car(models.Model):
 class Comment(models.Model):
     content = models.TextField(max_length=1024)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания коментария')
-    car = models.ForeignKey(Car, verbose_name='Внешний ключ на автомобиль', on_delete=models.CASCADE, related_name='car')
-    author = models.ForeignKey(User, verbose_name='Внешний ключ на пользователя', on_delete=models.CASCADE, related_name='author')
+    car = models.ForeignKey(Car, verbose_name='Внешний ключ на автомобиль', on_delete=models.CASCADE, related_name='comment')
+    author = models.ForeignKey(User, verbose_name='Внешний ключ на пользователя', on_delete=models.CASCADE, related_name='user')
+
+    def get_absolute_url(self):
+        return reverse("car_detail", kwargs={"pk": self.car.pk})
+    

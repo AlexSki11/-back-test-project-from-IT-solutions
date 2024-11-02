@@ -4,7 +4,7 @@
 {% block title %}Список записей{% endblock title %}
 {% block content %}
 {% if request.user.is_authenticated %}
-<a align='right' href="{% url 'car_create' %}">Создать запись</a>
+<a href="{% url 'car_create' %}">Создать запись</a>
 {% endif %}
 <div class='list-car-note'>
 {% if cars %}
