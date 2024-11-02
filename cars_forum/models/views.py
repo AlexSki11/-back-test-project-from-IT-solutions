@@ -81,7 +81,7 @@ class CommentCreate(LoginRequiredMixin, CreateView):
 class CommentEdit(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentCreateForm
-    template_name = 'comment_templates/comment_delete.html'
+    template_name = 'comment_templates/comment_create.html'
     raise_exception = True
 
     def get(self, request, *args, **kwargs):
