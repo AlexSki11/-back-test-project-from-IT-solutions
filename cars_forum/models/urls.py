@@ -19,7 +19,7 @@ urlpatterns = [
     path('comment_delete/<int:pk>', CommentDelete.as_view(), name='comment_delete'),
 
     path('api/cars', CarListApi.as_view(), name='car_list_api'),
-    path('api/car/<int:pk>', CarUpdateApi.as_view(), name='car_update_api'),
+    path('api/cars/<int:pk>', CarUpdateApi.as_view(), name='car_update_api'),
 
-    path('api/car/<int:pk>/comment', CommentListApi.as_view(), name='comment_list')
+    path('api/cars/<int:pk>/comment', CommentListApi.as_view(), name='comment_list')
 ]
