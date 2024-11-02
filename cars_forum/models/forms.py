@@ -21,11 +21,11 @@ class CarSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ['make', 'model', 'year', 'description']
+        fields = ['id', 'make', 'model', 'year', 'description']
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['content']
+        fields = ['id','content']
         
 
