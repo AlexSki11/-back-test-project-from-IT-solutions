@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #rest api https://www.django-rest-framework.org/
+    'rest_framework',
+
+    #my app
     'models',
+    'accounts',
+
 ]
 
 SITE_ID = 1
@@ -115,6 +121,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+#login https://docs.djangoproject.com/en/4.0/ref/settings/#login-url
+LOGIN_URL = 'accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -126,3 +136,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static_files/']
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#rest settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

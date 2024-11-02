@@ -3,8 +3,26 @@
 
 {% block title %}Список записей{% endblock title %}
 {% block content %}
+
 {% if request.user.is_authenticated %}
+<div class='form'>
+	
+<form method="post" action="{% url 'logout' %}">
+	{% csrf_token %}
+		<input type="submit" value="Выйти">
+	</form>
+</div>
+
+<br />
 <a href="{% url 'car_create' %}">Создать запись</a>
+{% else %}
+<div class='form'>
+<form method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+		<input type="submit" value="Войти">
+	</form>
+</div>
+
 {% endif %}
 <div class='list-car-note'>
 {% if cars %}

@@ -3,6 +3,8 @@ from django.urls import path
 from .views import (CarCreate, CarEdit, CarDelete, CarList, CarDetail,
                     CommentCreate, CommentEdit, CommentDelete)
 
+from .api import CarListApi, CarUpdateApi, CommentListApi
+
 
 
 urlpatterns = [
@@ -14,5 +16,10 @@ urlpatterns = [
 
     path('comment_create/', CommentCreate.as_view(), name='comment_create'),
     path('comment_edit/<int:pk>', CommentEdit.as_view(), name='comment_edit'),
-    path('comment_delete/<int:pk>', CommentDelete.as_view(), name='comment_delete')
+    path('comment_delete/<int:pk>', CommentDelete.as_view(), name='comment_delete'),
+
+    path('api/cars', CarListApi.as_view(), name='car_list_api'),
+    path('api/car/<int:pk>', CarUpdateApi.as_view(), name='car_update_api'),
+
+    path('api/car/<int:pk>/comment', CommentListApi.as_view(), name='comment_list')
 ]
