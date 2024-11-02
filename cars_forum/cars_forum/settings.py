@@ -122,7 +122,7 @@ USE_I18N = True
 USE_TZ = True
 
 #login https://docs.djangoproject.com/en/4.0/ref/settings/#login-url
-LOGIN_URL = 'accounts/login/'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
